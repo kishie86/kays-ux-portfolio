@@ -606,19 +606,6 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
 
 </main>
 
-<dialog class="rq" id="rq" aria-labelledby="rqH">
-  <form id="rqForm" novalidate>
-    <h3 id="rqH">Request my resume</h3>
-    <p class="rq-sub">Tell me a little about you and I’ll send my resume by email.</p>
-    <div class="rq-f"><label for="rqName">Your name <span aria-hidden="true">*</span></label><input id="rqName" name="name" autocomplete="name" required></div>
-    <div class="rq-f"><label for="rqEmail">Your email <span aria-hidden="true">*</span></label><input id="rqEmail" name="email" type="email" autocomplete="email" required></div>
-    <div class="rq-f"><label for="rqOrg">Company or role <small>(optional)</small></label><input id="rqOrg" name="org" autocomplete="organization"></div>
-    <div class="rq-f"><label for="rqMsg">Message <small>(optional)</small></label><textarea id="rqMsg" name="msg" rows="3"></textarea></div>
-    <p class="rq-err" id="rqErr" role="alert"></p>
-    <div class="rq-act"><button class="btn" type="submit" style="cursor:pointer;font-size:16px">Send request</button><button class="rq-cancel" type="button" id="rqCancel">Cancel</button></div>
-    <div class="rq-done" id="rqDone" role="status" hidden></div>
-  </form>
-</dialog>
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Enlarged screen" hidden><button class="lb-x" id="lbX" type="button" aria-label="Close">×</button><img id="lbImg" alt=""></div>
 
 <script>
@@ -837,45 +824,12 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
 
   /* ---------- contact cards ---------- */
   /* Fill these in and the placeholders turn into real links. */
-  var CONTACT = { email:'kl3493@drexel.edu', linkedin:'https://www.linkedin.com/in/kl-career/', resume:'' };
+  var CONTACT = { linkedin:'https://www.linkedin.com/in/kl-career/' };
   (function(){
     var grid = document.getElementById('contactGrid');
     function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;'); }
-    var emailV = CONTACT.email ? '<a href="mailto:'+esc(CONTACT.email)+'">'+esc(CONTACT.email)+'</a>' : '<span class="ph">[KAY: add your email]</span>';
     var inV = CONTACT.linkedin ? '<a href="'+esc(CONTACT.linkedin)+'" target="_blank" rel="noopener">LinkedIn profile</a>' : '<span class="ph">[KAY: add your LinkedIn URL]</span>';
-    var cvV = '<span style="font-size:20px">Available on request</span>';
-    grid.innerHTML =
-      '<div class="ccard"><small>Email</small><div class="v">'+emailV+'</div>'+(CONTACT.email?'<button class="copy" type="button" id="copyEmail">Copy email</button>':'')+'</div>' +
-      '<div class="ccard"><small>LinkedIn</small><div class="v">'+inV+'</div></div>' +
-      '<div class="ccard"><small>Resume</small><div class="v">'+cvV+'</div><button class="btn rq-open" type="button" id="rqOpen" style="align-self:flex-start;margin-top:8px;cursor:pointer;font-size:16px">Request My Resume</button></div>';
-    var btn = document.getElementById('copyEmail');
-    if(btn) btn.addEventListener('click', function(){
-      try{ navigator.clipboard.writeText(CONTACT.email).then(function(){ btn.textContent='Copied'; setTimeout(function(){ btn.textContent='Copy email'; },1800); }, function(){ btn.textContent='Copy failed'; }); }catch(e){ btn.textContent='Copy failed'; }
-    });
-  })();
-
-  /* ---------- resume request form ---------- */
-  (function(){
-    var dlg=document.getElementById('rq'), form=document.getElementById('rqForm'), err=document.getElementById('rqErr'), done=document.getElementById('rqDone');
-    var openB=document.getElementById('rqOpen'), cancel=document.getElementById('rqCancel');
-    if(!dlg||!openB) return;
-    function reset(){ form.reset(); err.textContent=''; done.hidden=true; done.innerHTML=''; }
-    openB.addEventListener('click', function(){ reset(); if(dlg.showModal){ dlg.showModal(); } else { dlg.setAttribute('open',''); } document.getElementById('rqName').focus(); });
-    cancel.addEventListener('click', function(){ dlg.close ? dlg.close() : dlg.removeAttribute('open'); openB.focus(); });
-    dlg.addEventListener('click', function(e){ if(e.target===dlg){ dlg.close(); openB.focus(); } });
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      var name=form.name.value.trim(), email=form.email.value.trim(), org=form.org.value.trim(), msg=form.msg.value.trim();
-      if(!name){ err.textContent='Please enter your name.'; form.name.focus(); return; }
-      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ err.textContent='Please enter a valid email address so I can reply.'; form.email.focus(); return; }
-      err.textContent='';
-      var subject='Resume request from '+name;
-      var body='Hi Kay,\n\nI’d like to request your resume.\n\nName: '+name+'\nEmail: '+email+(org?'\nCompany or role: '+org:'')+(msg?'\n\n'+msg:'')+'\n';
-      var href='mailto:'+CONTACT.email+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
-      var a=document.createElement('a'); a.href=href; a.style.display='none'; document.body.appendChild(a); a.click(); a.remove();
-      done.hidden=false;
-      done.innerHTML='Your email app should open with this request ready to send. If nothing opens, <a href="'+href+'">click here</a> or email <b>'+CONTACT.email+'</b> directly.';
-    });
+    grid.innerHTML = '<div class="ccard"><small>LinkedIn</small><div class="v">'+inV+'</div></div>';
   })();
 
   /* ---------- route line + plane ---------- */
