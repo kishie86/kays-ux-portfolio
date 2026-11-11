@@ -78,7 +78,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--sapphire);outline-o
 
 /* tiles in an arch */
 .cases{padding:40px 0 100px}
-.arch{display:grid;grid-template-columns:1fr 1.12fr 1fr;grid-template-areas:". bb ." "zr . kc";gap:36px 40px;align-items:start}
+.arch{display:grid;grid-template-columns:repeat(3,1fr);grid-template-areas:"bb zr kc";gap:36px 28px;align-items:start}
 .arch .zr-cell{grid-area:zr}.arch .bb-cell{grid-area:bb}.arch .kc-cell{grid-area:kc}
 .fly{display:flex;align-items:center;justify-content:center;align-self:center}
 .fly svg{width:46px;height:46px;fill:var(--royal)}
@@ -444,8 +444,6 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
           <p>Three projects from my Master’s at Drexel University. Hover or focus a tile to preview it, then open it for the full story.</p>
         </div>
         <div class="arch">
-          <div class="fly fly-l" aria-hidden="true"><svg><use href="#plane"/></svg></div>
-          <div class="fly fly-r" aria-hidden="true"><svg><use href="#plane"/></svg></div>
 
           <div class="bb-cell">
             <a class="tile" href="#bargain-beacon" aria-label="Open the Bargain Beacon case study">
