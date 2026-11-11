@@ -209,7 +209,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--sapphire);outline-o
 
 /* contact + runway */
 .contact{padding:10px 0 70px}
-.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .ccard{background:var(--white);border:1px solid var(--shell);border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;gap:6px;transition:border-color .2s}
 .ccard:hover{border-color:var(--gold)}
 .ccard small{font-weight:700;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--sapphire)}
@@ -279,6 +279,7 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
 .lb img{max-width:94vw;max-height:88vh;width:auto;height:auto;border-radius:10px;background:#fff;box-shadow:0 20px 60px rgba(0,0,0,.4)}
 .lb-x{position:absolute;top:14px;right:18px;width:44px;height:44px;border-radius:50%;border:0;background:var(--white);color:var(--royal);font-size:26px;line-height:1;cursor:pointer}
 @media (max-width:700px){.shots{grid-template-columns:1fr}}
+@media (max-width:760px){.contact-grid{grid-template-columns:1fr}}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin:18px 0}
 .stat{border:1px solid var(--shell);border-radius:14px;padding:16px 18px;background:var(--white)}
 .stat b{display:block;font-family:var(--display);font-size:46px;line-height:1;color:var(--royal)}
