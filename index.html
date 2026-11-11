@@ -178,7 +178,11 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--sapphire);outline-o
 .chips li{background:var(--swan);border:1px solid var(--shell);border-radius:999px;padding:4px 13px;font-size:15px;font-weight:700}
 
 /* about */
-.about{padding:20px 0 110px}
+.about{padding:0 0 110px}
+.about-wrap{padding-bottom:0!important}
+.about-cta{padding:30px 0 90px}
+.about-cta .eyebrow{margin:0 0 18px}
+.about-btn{display:inline-block;cursor:pointer;font-size:18px}
 .about-intro{margin-top:26px;max-width:640px}
 .eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 10px!important;max-width:none!important;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--sapphire)!important}
 .eyebrow:before{content:"";width:36px;height:2px;background:var(--gold);border-radius:2px}
@@ -400,7 +404,7 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
     <nav class="nav" aria-label="Main">
       <a href="#case-studies">Case Studies</a>
       <a href="#profile">Profile</a>
-      <a href="#about">About</a>
+      <a href="#about-me">About</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -547,7 +551,41 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
       </div>
     </section>
 
-    <section class="stop about" id="about" aria-labelledby="ab-h">
+    <section class="stop about-cta" id="about" aria-label="About me">
+      <div class="wrap">
+        <p class="eyebrow">The Story Behind the Designer</p>
+        <a class="btn about-btn" href="#about-me">A Little About Me</a>
+      </div>
+    </section>
+
+    <section class="stop contact" id="contact" aria-labelledby="ct-h">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 id="ct-h">Contact Me</h2>
+          <p>I’m open to full-time UX roles at any company. If my work sparks an idea, I’d love to hear from you.</p>
+        </div>
+        <div class="contact-grid" id="contactGrid"></div>
+        <div class="runway" id="runway">
+          <div class="strip"><i class="l1"></i><i class="l2"></i></div>
+          <p class="landed-note">You’ve landed! Let’s build something thoughtful together.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <p style="margin:0">© Kay · UX Designer &amp; Researcher</p>
+    </div>
+  </footer>
+</div>
+
+<!-- CASE STUDY VIEW -->
+<div id="aboutView" hidden>
+  <div class="wrap cs about-wrap">
+    <a class="back" href="#about"><svg aria-hidden="true"><use href="#plane"/></svg>Back to the journey</a>
+  </div>
+    <section class="stop about" id="about-page" aria-labelledby="ab-h">
       <div class="wrap">
         <div class="sec-head">
           <h2 id="ab-h">About</h2>
@@ -577,30 +615,8 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
         </div>
       </div>
     </section>
-
-    <section class="stop contact" id="contact" aria-labelledby="ct-h">
-      <div class="wrap">
-        <div class="sec-head">
-          <h2 id="ct-h">Contact Me</h2>
-          <p>I’m open to full-time UX roles at any company. If my work sparks an idea, I’d love to hear from you.</p>
-        </div>
-        <div class="contact-grid" id="contactGrid"></div>
-        <div class="runway" id="runway">
-          <div class="strip"><i class="l1"></i><i class="l2"></i></div>
-          <p class="landed-note">You’ve landed! Let’s build something thoughtful together.</p>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <footer>
-    <div class="wrap">
-      <p style="margin:0">© Kay · UX Designer &amp; Researcher</p>
-    </div>
-  </footer>
 </div>
 
-<!-- CASE STUDY VIEW -->
 <div id="csView" hidden></div>
 
 </main>
@@ -841,7 +857,7 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
 
   function stopsY(){
     var jt = journey.getBoundingClientRect().top + window.scrollY;
-    var ids = ['intro','case-studies','profile'];
+    var ids = ['intro','case-studies','profile','about'];
     var ys = ids.map(function(id){ var e=document.getElementById(id), b=e.getBoundingClientRect(); return b.top + window.scrollY - jt + b.height/2; });
     document.querySelectorAll('.zblock').forEach(function(e){ var b=e.getBoundingClientRect(); ys.push(b.top + window.scrollY - jt + b.height/2); });
     return ys;
@@ -960,17 +976,22 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
   })();
 
   /* ---------- routing by hash ---------- */
-  var home = document.getElementById('home'), csView = document.getElementById('csView');
+  var home = document.getElementById('home'), csView = document.getElementById('csView'), aboutView = document.getElementById('aboutView');
   function route(first){
     var h = location.hash.replace('#','');
-    if(order.indexOf(h) > -1){
+    if(h === 'about-me'){
+      aboutView.hidden = false; csView.hidden = true; csView.innerHTML = ''; home.hidden = true;
+      document.title = 'About · Kay’s UX Journey';
+      window.scrollTo(0,0);
+    } else if(order.indexOf(h) > -1){
+      aboutView.hidden = true;
       csView.innerHTML = renderCase(h);
       csView.hidden = false; home.hidden = true;
       document.title = names[h] + ' · Kay’s UX Journey';
       window.scrollTo(0,0);
     } else {
       var wasHidden = home.hidden;
-      csView.hidden = true; home.hidden = false; csView.innerHTML = '';
+      aboutView.hidden = true; csView.hidden = true; home.hidden = false; csView.innerHTML = '';
       document.title = 'Kay’s UX Journey';
       requestAnimationFrame(function(){
         buildRoute();
