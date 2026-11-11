@@ -829,7 +829,7 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
   (function(){
     var grid = document.getElementById('contactGrid');
     function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;'); }
-    var inV = CONTACT.linkedin ? '<a href="'+esc(CONTACT.linkedin)+'" target="_blank" rel="noopener">LinkedIn profile</a>' : '<span class="ph">[KAY: add your LinkedIn URL]</span>';
+    var inV = CONTACT.linkedin ? '<a href="'+esc(CONTACT.linkedin)+'" target="_blank" rel="noopener">LinkedIn Profile</a>' : '<span class="ph">[KAY: add your LinkedIn URL]</span>';
     grid.innerHTML = '<div class="ccard"><small>LinkedIn</small><div class="v">'+inV+'</div></div>';
   })();
 
