@@ -838,7 +838,6 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
     var jt = journey.getBoundingClientRect().top + window.scrollY;
     var ids = ['intro','case-studies','profile'];
     var ys = ids.map(function(id){ var e=document.getElementById(id), b=e.getBoundingClientRect(); return b.top + window.scrollY - jt + b.height/2; });
-    document.querySelectorAll('.zblock').forEach(function(e){ var b=e.getBoundingClientRect(); ys.push(b.top + window.scrollY - jt + b.height/2); });
     return ys;
   }
   function buildRoute(){
@@ -847,18 +846,20 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
     svg.setAttribute('viewBox','0 0 '+w+' '+h);
     document.getElementById('flySvg').setAttribute('viewBox','0 0 '+w+' '+h);
     var narrow = w < 861, ys = stopsY();
-    var xs = narrow ? [14,20,12,20,12,20,12] : [0.06,0.94,0.05,0.95,0.05,0.95,0.05].map(function(f){return f*w;});
+    var xs = narrow ? [14,20,12] : [0.06,0.94,0.05].map(function(f){return f*w;});
     var pts = [[narrow?14:0.04*w, 0]];
     ys.forEach(function(y,i){ pts.push([xs[i], y]); });
+    /* runway position, then a waypoint in the left margin just above it so the path never crosses the Contact content */
+    var rw = document.querySelector('#runway .strip'), rr = rw.getBoundingClientRect(), jr = journey.getBoundingClientRect();
+    var rx0 = rr.left - jr.left + 22, rx1 = rr.right - jr.left - 30;
+    landY = rr.top + rr.height/2 - jr.top;
+    pts.push([narrow?12:0.035*w, landY - 70]);
     var d = 'M'+pts[0][0]+' '+pts[0][1];
     for(var i=0;i<pts.length-1;i++){
       var a=pts[i], b=pts[i+1], my=(a[1]+b[1])/2;
       d += ' C'+a[0]+' '+my+' '+b[0]+' '+my+' '+b[0]+' '+b[1];
     }
     /* final approach: descend, curve onto the runway and roll to a stop */
-    var rw = document.querySelector('#runway .strip'), rr = rw.getBoundingClientRect(), jr = journey.getBoundingClientRect();
-    var rx0 = rr.left - jr.left + 22, rx1 = rr.right - jr.left - 30;
-    landY = rr.top + rr.height/2 - jr.top;
     var last = pts[pts.length-1], elbow = Math.min(rx0 + 110, rx1 - 40);
     d += ' C'+last[0]+' '+(last[1] + (landY-last[1])*0.6)+' '+rx0+' '+landY+' '+elbow+' '+landY+' L'+rx1+' '+landY;
     routePath.setAttribute('d', d);
