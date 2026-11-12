@@ -62,14 +62,14 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--sapphire);outline-o
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 
 /* hero */
-.hero{padding:72px 0 88px}
+.hero{padding:72px 0 88px;overflow-x:clip}
 .hi{font-size:clamp(38px,5.6vw,66px);font-weight:500;letter-spacing:-.01em}
 .role{font-family:var(--body);font-weight:700;font-size:clamp(20px,2.4vw,26px);margin:14px 0 0;padding-bottom:16px;position:relative}
 .role:after{content:"";position:absolute;left:0;bottom:0;width:94px;height:3px;border-radius:2px;background:var(--gold)}
 .hero .wrap{position:relative}
 .hero{position:relative}
 .hero .wrap{z-index:1}
-.hero-pol{position:relative;left:11px;width:min(100%,470px);margin:26px auto 0;aspect-ratio:730/388;z-index:1;pointer-events:none}
+.hero-pol{position:relative;left:clamp(10px,3.3vw,42px);width:min(108%,540px);margin:22px auto 0;aspect-ratio:730/388;z-index:1;pointer-events:none}
 .hero-pol img{position:absolute;display:block;height:auto}
 .hero-pol .pb{left:0;top:0;width:100%}
 .hero-pol{filter:drop-shadow(0 10px 12px rgba(80,55,40,.22))}
