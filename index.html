@@ -68,13 +68,6 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--sapphire);outline-o
 .hero .wrap{position:relative}
 .hero{position:relative}
 .hero .wrap{z-index:1}
-.clouds{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
-.cloud{position:absolute;left:0;width:var(--w);height:calc(var(--w)*.34);opacity:var(--o);background:#C9D5EE;border-radius:999px;filter:blur(5px);animation:cdrift var(--d) linear infinite;animation-delay:var(--dl);will-change:transform}
-.cloud:before,.cloud:after{content:"";position:absolute;background:#C9D5EE;border-radius:50%}
-.cloud:before{width:46%;height:150%;left:16%;top:-70%}
-.cloud:after{width:36%;height:120%;left:50%;top:-45%}
-@keyframes cdrift{from{transform:translateX(-35%)}to{transform:translateX(calc(100vw))}}
-@media (prefers-reduced-motion:reduce){.cloud{animation:none;transform:translateX(30vw)}}
 .hero-main{margin:clamp(56px,10vw,120px) 0 0 clamp(0px,24vw,300px);max-width:760px;text-align:center}
 .hero-main h2{font-size:clamp(38px,5.6vw,66px)}
 .hero-main .sub{font-weight:700;font-size:clamp(19px,2.2vw,24px);margin:22px 0 10px}
@@ -420,7 +413,6 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
     </svg>
 
     <section class="stop hero" id="intro" aria-labelledby="hi">
-      <div class="clouds" aria-hidden="true"><span class="cloud c1" style="top:0%;--w:240px;--d:50s;--dl:-12s;--o:0.9"></span><span class="cloud c2" style="top:16%;--w:170px;--d:66s;--dl:-40s;--o:0.7"></span><span class="cloud c3" style="top:38%;--w:300px;--d:80s;--dl:-55s;--o:0.55"></span><span class="cloud c4" style="top:60%;--w:200px;--d:60s;--dl:-22s;--o:0.5"></span><span class="cloud c5" style="top:80%;--w:260px;--d:72s;--dl:-8s;--o:0.5"></span></div>
       <div class="wrap">
         <h1 class="hi" id="hi">Hi, I’m Kay <span class="wave" aria-hidden="true">👋</span></h1>
         <p class="role">UX Designer &amp; Researcher</p>
