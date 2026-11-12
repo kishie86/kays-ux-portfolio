@@ -319,7 +319,8 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
 .shots.phones .shot figcaption b{font-size:30px;margin-bottom:8px}
 .ann{position:relative;margin-top:22px}
 .ann>img{display:block;width:230px;max-width:100%;height:auto;aspect-ratio:auto;object-fit:contain;background:#fff;border:1px solid var(--shell);border-radius:22px;box-shadow:0 8px 24px rgba(17,34,80,.12)}
-.ann.wide>img{position:absolute;left:50%;top:0;margin-left:-115px}
+.ann.wide>img{position:absolute;top:0;margin:0}
+.albl.r{text-align:left}
 .ann svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
 .albl{position:absolute;width:205px;font-size:15px;line-height:1.4;color:var(--ink-soft)}
 .albl b{display:block;font-family:var(--display);font-size:22px;font-weight:600;line-height:1.1;color:var(--royal);margin-bottom:2px}
@@ -998,35 +999,41 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
   var home = document.getElementById('home'), csView = document.getElementById('csView'), aboutView = document.getElementById('aboutView');
 
   function layoutAnn(){
-    document.querySelectorAll('.shot[data-ann]').forEach(function(f){
-      var img = f.querySelector('img'), ann = f.querySelector('.ann');
+    document.querySelectorAll('.shot[data-ann]').forEach(function(f, idx){
+      var img = f.querySelector('.ann>img') || f.querySelector('img'), ann = f.querySelector('.ann'), cap = f.querySelector('figcaption');
       if(!ann){ ann = document.createElement('div'); ann.className = 'ann'; f.appendChild(ann); ann.appendChild(img); }
       ann.querySelectorAll('.albl,svg,.alist').forEach(function(n){ n.remove(); });
+      cap.classList.remove('zcap'); cap.removeAttribute('style'); f.insertBefore(cap, ann);
       var items; try{ items = JSON.parse(f.getAttribute('data-ann')); }catch(e){ return; }
-      var W = f.clientWidth - (parseFloat(getComputedStyle(f).paddingLeft) + parseFloat(getComputedStyle(f).paddingRight));
+      var cs = getComputedStyle(f), W = f.clientWidth - (parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight));
       if(W < 620){
-        ann.classList.remove('wide'); ann.style.height = '';
+        ann.classList.remove('wide'); ann.style.height = ''; img.style.left = '';
         var ul = document.createElement('ul'); ul.className = 'alist';
         items.forEach(function(a){ var li = document.createElement('li'); var b = document.createElement('b'); b.textContent = a[2]; li.appendChild(b); li.appendChild(document.createTextNode(a[3])); ul.appendChild(li); });
         ann.appendChild(ul); return;
       }
-      var iw = 230, ih = iw * (+img.getAttribute('height')) / (+img.getAttribute('width'));
-      ann.classList.add('wide'); ann.style.height = ih + 'px';
-      var cx = W/2, L = cx - iw/2, R = cx + iw/2, ns = 'http://www.w3.org/2000/svg';
-      var svg = document.createElementNS(ns,'svg');
-      svg.innerHTML = '<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="10" markerHeight="10" orient="auto"><path d="M1 1L9 5L1 9z" fill="#B88A3E"/></marker></defs>';
+      var rev = idx % 2 === 1, iw = 230, ih = iw * (+img.getAttribute('height')) / (+img.getAttribute('width'));
+      ann.classList.add('wide'); ann.style.height = ih + 'px'; ann.style.marginTop = '0';
+      var pl = rev ? W - iw : 0, pr = pl + iw, gapx = 64, tw = W - iw - gapx;
+      img.style.left = pl + 'px';
+      ann.appendChild(cap); cap.classList.add('zcap');
+      cap.style.cssText = 'position:absolute;top:0;width:' + tw + 'px;left:' + (rev ? 0 : pr + gapx) + 'px;text-align:' + (rev ? 'right' : 'left');
+      var ns = 'http://www.w3.org/2000/svg', svg = document.createElementNS(ns,'svg'), mid = 'ah' + idx;
+      svg.innerHTML = '<defs><marker id="'+mid+'" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="10" markerHeight="10" orient="auto"><path d="M1 1L9 5L1 9z" fill="#B88A3E"/></marker></defs>';
       ann.appendChild(svg);
-      var pts = items.map(function(a){ return {tx:L+iw*a[0]/100, ty:ih*a[1]/100, t:a[2], d:a[3], side:a[0] >= 50 ? 'r' : 'l'}; });
-      ['r','l'].forEach(function(sd){ var last = -1e9; pts.filter(function(o){return o.side===sd;}).sort(function(a,b){return a.ty-b.ty;}).forEach(function(o){ o.ly = Math.max(o.ty, last + 72); last = o.ly; }); });
-      pts.forEach(function(o){
-        var lb = document.createElement('div'); lb.className = 'albl ' + o.side;
+      var pts = items.map(function(a){ return {tx:pl+iw*a[0]/100, ty:ih*a[1]/100, t:a[2], d:a[3]}; }).sort(function(a,b){ return a.ty-b.ty; });
+      var start = cap.offsetHeight + 34, n = pts.length, step = n > 1 ? Math.max(62, Math.min(86, (ih - start - 56) / (n - 1))) : 0;
+      pts.forEach(function(o, k){
+        o.ly = start + 14 + k * step;
+        var lb = document.createElement('div'); lb.className = 'albl ' + (rev ? 'l' : 'r');
         var b = document.createElement('b'); b.textContent = o.t; lb.appendChild(b); lb.appendChild(document.createTextNode(o.d));
-        var lx = o.side === 'r' ? R + 52 : L - 52;
-        lb.style.left = (o.side === 'r' ? lx : lx - 205) + 'px'; lb.style.top = (o.ly - 14) + 'px'; ann.appendChild(lb);
-        var bx = o.side === 'r' ? R + 28 : L - 28, ex = o.side === 'r' ? lx - 8 : lx + 8;
+        lb.style.width = (tw - 12) + 'px';
+        lb.style.left = (rev ? 0 : pr + gapx) + 'px'; lb.style.top = (o.ly - 14) + 'px'; ann.appendChild(lb);
+        var ex = rev ? tw + 8 - 12 + 12 : pr + gapx - 8, bx = rev ? pl - 26 : pr + 26;
+        if(rev) ex = tw + 6;
         var pa = document.createElementNS(ns,'path');
         pa.setAttribute('d','M'+ex+' '+o.ly+' L'+bx+' '+o.ly+' L'+o.tx+' '+o.ty);
-        pa.setAttribute('fill','none'); pa.setAttribute('stroke','#B88A3E'); pa.setAttribute('stroke-width','1.6'); pa.setAttribute('marker-end','url(#ah)'); svg.appendChild(pa);
+        pa.setAttribute('fill','none'); pa.setAttribute('stroke','#B88A3E'); pa.setAttribute('stroke-width','1.6'); pa.setAttribute('marker-end','url(#'+mid+')'); svg.appendChild(pa);
         var c = document.createElementNS(ns,'circle'); c.setAttribute('cx',o.tx); c.setAttribute('cy',o.ty); c.setAttribute('r','3.5'); c.setAttribute('fill','#B88A3E'); svg.appendChild(c);
       });
     });
