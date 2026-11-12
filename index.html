@@ -70,6 +70,9 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--sapphire);outline-o
 .hero{position:relative}
 .hero .wrap{z-index:1}
 .hero-trio{position:absolute;left:0;top:150px;width:min(46vw,560px);height:auto;display:block;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent),linear-gradient(180deg,transparent,#000 6%,#000 90%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent),linear-gradient(180deg,transparent,#000 6%,#000 90%,transparent);mask-composite:intersect}
+.hero-trio{animation:trfloat 6s ease-in-out infinite alternate;will-change:transform}
+@keyframes trfloat{from{transform:translateY(8px) rotate(-.4deg)}to{transform:translateY(-12px) rotate(.4deg)}}
+@media (prefers-reduced-motion:reduce){.hero-trio{animation:none}}
 @media (max-width:860px){.hero-trio{position:static;width:min(100%,460px);margin:14px 0 6px}}
 .hero{background:radial-gradient(1100px 420px at 90% -6%,#f7efe4 0,rgba(247,239,228,0) 62%),#fff}
 .hero-main{margin:clamp(24px,3vw,36px) 0 0 52%;max-width:none;text-align:center}
