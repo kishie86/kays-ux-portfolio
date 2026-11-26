@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kay | UX Designer &amp; Researcher</title>
+<title>Kay’s UX Studio | Business Analyst &amp; Product Thinker</title>
 <meta name="description" content="Portfolio of Kay, a UX Designer and Researcher with a travel-industry background and a Master's in HCI &amp; UX Design from Drexel University.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23112250'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23E0C58F' font-family='Georgia,serif'%3EK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -466,7 +466,7 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
 
 <header class="top">
   <div class="top-in">
-    <a class="brand" href="#intro" aria-label="Kay’s UX Portfolio, home">Kay’s UX Portfolio</a>
+    <a class="brand" href="#intro" aria-label="Kay’s UX Studio, home">Kay’s UX Studio</a>
     <nav class="nav" aria-label="Main">
       <a href="#case-studies">Case Studies</a>
       <a href="#profile">Profile</a>
@@ -631,7 +631,7 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
 
   <footer>
     <div class="wrap">
-      <p style="margin:0">© Kay · UX Designer &amp; Researcher</p>
+      <p style="margin:0">© Kay’s UX Studio · Business Analyst &amp; Product Thinker</p>
     </div>
   </footer>
 </div>
@@ -1063,19 +1063,19 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
     var h = location.hash.replace('#','');
     if(h === 'about-me'){
       aboutView.hidden = false; csView.hidden = true; csView.innerHTML = ''; home.hidden = true;
-      document.title = 'About · Kay’s UX Journey';
+      document.title = 'About · Kay’s UX Studio';
       window.scrollTo(0,0);
     } else if(order.indexOf(h) > -1){
       aboutView.hidden = true;
       csView.innerHTML = renderCase(h);
       csView.hidden = false; home.hidden = true;
       layoutAnn();
-      document.title = names[h] + ' · Kay’s UX Journey';
+      document.title = names[h] + ' · Kay’s UX Studio';
       window.scrollTo(0,0);
     } else {
       var wasHidden = home.hidden;
       aboutView.hidden = true; csView.hidden = true; home.hidden = false; csView.innerHTML = '';
-      document.title = 'Kay’s UX Journey';
+      document.title = 'Kay’s UX Studio';
       requestAnimationFrame(function(){
         buildRoute();
         var el = h && document.getElementById(h);
