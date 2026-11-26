@@ -448,8 +448,10 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
 .cs-banner .arch{background:#fff;border-radius:26px;padding:32px;margin-bottom:-210px;box-shadow:0 8px 16px rgba(17,34,80,.10),0 28px 60px rgba(17,34,80,.30)}
 .cs-banner .fly svg{fill:var(--royal)}
 .cs-banner .tile{background:transparent}
-@media (min-width:861px){.cs-banner{width:min(1400px,calc(100vw - 48px));left:50%;transform:translateX(-50%);padding:72px 56px 0}}
-@media (max-width:860px){.cs-banner{padding:40px 16px 0;border-radius:16px;margin-bottom:150px}.cs-banner .arch{padding:16px;margin-bottom:-150px}}
+.cs-banner{width:100vw;margin-left:calc(50% - 50vw);border-radius:0}
+body{overflow-x:clip}
+@media (min-width:861px){.cs-banner{padding:72px max(24px,calc(50vw - 560px)) 0}}
+@media (max-width:860px){.cs-banner{padding:40px 20px 0;margin-bottom:150px}.cs-banner .arch{padding:16px;margin-bottom:-150px}}
 </style>
 </head>
 <body>
@@ -1105,6 +1107,12 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
   window.addEventListener('hashchange', function(){ route(false); });
   route(true);
 })();
+</script>
+<script>
+(function(){var b=document.querySelector('.cs-banner');if(!b)return;
+function fit(){b.style.marginLeft='0px';var l=b.getBoundingClientRect().left;b.style.marginLeft=(-l)+'px';}
+fit();window.addEventListener('resize',fit);window.addEventListener('load',fit);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);})();
 </script>
 </body>
 </html>
