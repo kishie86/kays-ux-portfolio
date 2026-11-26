@@ -71,19 +71,6 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--sapphire);outline-o
 .hero-photo img{display:block;width:100%;height:auto}
 @media (min-width:861px){.hero-photo{position:absolute;left:24px;top:176px;margin:0}}
 @media (max-width:860px){.hero-photo{width:min(100%,340px)}.hero-photo img{aspect-ratio:4/3;object-fit:cover;object-position:50% 25%}}
-.hero{background:linear-gradient(180deg,#F7F3EE 88%,#fff)}
-.hero-globe{position:absolute;right:-70px;top:-30px;width:min(62vw,800px);aspect-ratio:862/720;z-index:0;pointer-events:none}
-.hero-globe svg{width:100%;height:100%;display:block;overflow:visible}
-.hero-globe .flow{animation:gfl 2s linear infinite}
-@keyframes gfl{to{stroke-dashoffset:-16}}
-.hero-globe .mer{transform-origin:1210px 350px;transform-box:view-box}
-.hero-globe .m1{animation:gmr 8s ease-in-out infinite alternate}
-.hero-globe .m2{animation:gmr 8s ease-in-out -4s infinite alternate}
-@keyframes gmr{from{transform:scaleX(.22)}to{transform:scaleX(1)}}
-.hero-globe .lat{transform-origin:1210px 350px;animation:glt 8s ease-in-out infinite alternate}
-@keyframes glt{from{transform:scaleY(.8)}to{transform:scaleY(1.25)}}
-@media (prefers-reduced-motion:reduce){.hero-globe *{animation:none!important}.hero-globe animateMotion{display:none}}
-@media (max-width:860px){.hero-globe{right:-38vw;top:0;width:120vw;opacity:.55}}
 .hero .wrap{position:relative}
 .hero{position:relative}
 .hero .wrap{z-index:1}
@@ -503,24 +490,6 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
     </svg>
 
     <section class="stop hero" id="intro" aria-labelledby="hi">
-      <div class="hero-globe" aria-hidden="true"><svg viewBox="620 0 862 720" xmlns="http://www.w3.org/2000/svg">
-<g fill="none" stroke="#D5DEDB" stroke-width="1.6">
-<circle cx="1210" cy="350" r="350"/><circle cx="1210" cy="350" r="268"/><circle cx="1210" cy="350" r="186"/>
-<ellipse class="mer m1" cx="1210" cy="350" rx="190" ry="350"/>
-<ellipse class="mer m2" cx="1210" cy="350" rx="190" ry="350"/>
-<ellipse cx="1210" cy="350" rx="350" ry="150" class="lat"/>
-</g>
-<g fill="none" stroke="#9DB8B6" stroke-width="2.2" stroke-dasharray="7 9" class="flow">
-<path id="a1" d="M744 117 C 880 62, 1010 80, 1104 162"/>
-<path id="a2" d="M1104 162 C 1200 260, 1310 440, 1359 581"/>
-<path id="a3" d="M651 628 C 720 410, 860 170, 981 137 C 1100 50, 1300 55, 1394 176"/>
-<path id="a4" d="M837 535 C 940 400, 1100 284, 1240 288 C 1360 292, 1440 340, 1490 392"/>
-</g>
-<circle cx="744" cy="117" r="7" fill="#9DB8B6"/><circle cx="1104" cy="162" r="9" fill="#5E9296"/><circle cx="1394" cy="176" r="9" fill="#5E9296"/><circle cx="1359" cy="581" r="9" fill="#5E9296"/><circle cx="651" cy="628" r="9" fill="#A5BDBB"/><circle cx="837" cy="535" r="6" fill="#9DB8B6"/>
-<circle r="11" fill="#C3A56D"><animateMotion dur="8s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;0" keyTimes="0;.5;1"><mpath href="#a3"/></animateMotion></circle>
-<circle r="9" fill="#E3A9A6"><animateMotion dur="8s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;0" keyTimes="0;.5;1"><mpath href="#a4"/></animateMotion></circle>
-<circle r="8" fill="#5E9296"><animateMotion dur="8s" repeatCount="indefinite" calcMode="linear" keyPoints="1;0;1" keyTimes="0;.5;1"><mpath href="#a2"/></animateMotion></circle>
-</svg></div>
       <div class="wrap">
         <h1 class="hi" id="hi">Hi, I’m Kay <span class="wave" aria-hidden="true">👋</span></h1>
         <p class="role"><span class="r1">Business Analyst &amp; Product Thinker | Customer Insights</span><span class="r2">Travel, Hospitality &amp; Fintech</span></p>
