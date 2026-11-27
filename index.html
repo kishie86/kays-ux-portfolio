@@ -530,6 +530,7 @@ body.pf-lb-open{overflow:hidden}
 @media (max-width:860px){.ct-main{grid-template-columns:1fr;row-gap:24px}.ct-card,.ct-text{grid-column:1;grid-row:auto}.ct-card{width:min(100%,420px);justify-self:center;transform:rotate(2deg)}}
 .ct-card{position:relative}
 .ct-card:before{content:"";position:absolute;left:50%;top:-12px;width:120px;height:32px;margin-left:-60px;transform:rotate(-3deg);z-index:2;background:repeating-linear-gradient(90deg,rgba(255,255,255,0) 0 7px,rgba(255,255,255,.18) 7px 8px),linear-gradient(180deg,rgba(236,222,186,.93),rgba(224,205,160,.89));box-shadow:0 2px 6px rgba(17,34,80,.22);clip-path:polygon(0 6%,3% 0,6% 7%,9% 0,100% 0,100% 100%,9% 100%,6% 93%,3% 100%,0 94%)}
+.cs-sec.cs-stack{grid-template-columns:1fr;gap:18px}
 </style>
 </head>
 <body>
@@ -834,7 +835,7 @@ body.pf-lb-open{overflow:hidden}
   function fig(t){ return '<div class="fig">[KAY: ' + t + ']</div>'; }
   function tags(a){ return '<ul class="tags cs-tags">' + a.map(function(x){return '<li>'+x+'</li>';}).join('') + '</ul>'; }
   function facts(rows){ return '<dl class="facts">' + rows.map(function(r){return '<div><dt>'+r[0]+'</dt><dd>'+r[1]+'</dd></div>';}).join('') + '</dl>'; }
-  function sec(h, body, wide){ return '<section class="cs-sec"><h2>'+h+'</h2><div class="cs-body'+(wide?' wide':'')+'">'+body+'</div></section>'; }
+  function sec(h, body, wide, cls){ return '<section class="cs-sec'+(cls?' '+cls:'')+'"><h2>'+h+'</h2><div class="cs-body'+(wide?' wide':'')+'">'+body+'</div></section>'; }
   function steps(list){ return '<ol class="steps">' + list.map(function(s,i){return '<li data-n="'+(i+1)+'"><h3>'+s[0]+'</h3><div class="sb">'+s[1]+'</div></li>';}).join('') + '</ol>'; }
 
   function gal(d, cls){
@@ -913,7 +914,7 @@ body.pf-lb-open{overflow:hidden}
             ['Empathy map and personas','I turned the research into an empathy map and two personas to see where overload happens and what travelers need.'+personas()],
             ['Design','A decluttered interface that puts the necessary information up front and personalizes the experience.'+wireframes()],
             ['Testing','Usability testing and A/B testing with five participants to evaluate the design solutions.'+'<p class="sub-h">What testing revealed</p>'+'<ul class="findings"><li><b>Navigation confusion.</b> Redundant navigation and repeated booking links made it difficult for participants to identify where to begin.</li><li><b>Misinterpreted alerts.</b> Prominent informational messages were sometimes perceived as errors or warnings, creating unnecessary anxiety.</li><li><b>Increased cognitive load.</b> Additional compliance alerts distracted participants and added unnecessary complexity to the booking experience.</li></ul>'+'<p class="sub-h">Design improvements</p>'+'<p>Based on these findings, I prioritized clearer navigation, reduced redundant booking options, and simplified informational messages to create a calmer, more intuitive experience.</p>']
-          ]), true),
+          ]), true, 'cs-stack'),
           sec('Final product','<p>A simple travel website that lets people streamline planning and booking by decluttering the interface and presenting only what’s necessary, up front.</p>'+shots()+'<p style="margin-top:22px"><a class="btn" href="https://www.figma.com/proto/eRSfI2ke2R2tDk4mBTb19B/High-Fidelity?node-id=796-198&amp;starting-point-node-id=782%3A143&amp;t=TdtXP6N8QG3q3dKG-1" target="_blank" rel="noopener">View the ZenRoute prototype in Figma</a></p>', true),
           sec('Outcome','<p>Through desk and user research, surveys, A/B tests and usability tests, I created a simple booking experience that decluttered the UI and presented necessary information up front. Participants said it felt more direct, focused and personalized.</p>'),
           sec('Reflection','<p>ZenRoute taught me that designing for sensory and cognitive needs isn’t about adding more features, but creating experiences that feel manageable, predictable, and empowering. Through testing, I learned that while guided assistance can build confidence, too many alerts can create unnecessary cognitive load.</p><p class="sub-h">What I’d do differently</p><p>I would involve a more diverse group of neurodivergent participants earlier in the design process, explore additional sensory preferences, and conduct more rounds of usability testing.</p><p class="sub-h">My biggest takeaway</p><p>Accessibility isn’t one-size-fits-all. Thoughtful design means giving users control, reducing unnecessary distractions, and recognizing that sometimes the best design decision is knowing what to leave out.</p>')
