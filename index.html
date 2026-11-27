@@ -518,12 +518,14 @@ body{overflow-x:clip}
 .pf-lb-prev{left:12px}.pf-lb-next{right:12px}
 body.pf-lb-open{overflow:hidden}
 @media (max-width:860px){.pf-lb{padding:64px 12px 56px}.pf-lb-n{top:auto;bottom:10px;margin:0}.pf-lb-prev{left:calc(50% - 56px)}.pf-lb-next{right:calc(50% - 56px)}.pf-lb-img{max-height:calc(100vh - 190px)}}
-.ct-main{display:grid;grid-template-columns:minmax(0,500px) minmax(0,1fr);column-gap:56px;align-items:center}
-.ct-card{margin:0;transform:rotate(-2.5deg);filter:drop-shadow(0 14px 20px rgba(17,34,80,.22))}
+.ct-main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,500px);column-gap:56px;align-items:center}
+.ct-card{grid-column:2;grid-row:1}
+.ct-text{grid-column:1;grid-row:1}
+.ct-card{margin:0;transform:rotate(2.5deg);filter:drop-shadow(0 14px 20px rgba(17,34,80,.22))}
 .ct-card img{display:block;width:100%;height:auto}
 .ct-text .sec-head{margin-top:0}
 .ct-text .contact-grid{grid-template-columns:minmax(0,300px)}
-@media (max-width:860px){.ct-main{grid-template-columns:1fr;row-gap:24px}.ct-card{width:min(100%,420px);justify-self:center;transform:rotate(-2deg)}}
+@media (max-width:860px){.ct-main{grid-template-columns:1fr;row-gap:24px}.ct-card,.ct-text{grid-column:1;grid-row:auto}.ct-card{width:min(100%,420px);justify-self:center;transform:rotate(2deg)}}
 </style>
 </head>
 <body>
