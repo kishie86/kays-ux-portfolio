@@ -110,7 +110,8 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--sapphire);outline-o
 @media (min-width:861px){.hero-main{margin:34px 0 0;width:min(100%,560px);text-align:left}.hero-main h2{font-size:clamp(30px,3.2vw,40px);white-space:normal}.hero-main .line3{white-space:normal}.hero-pol{position:absolute;right:0;left:auto;top:200px;width:min(44vw,520px);margin:0}}
 @media (max-width:860px){.hb{display:none}}
 .hero-main .sub{font-weight:700;font-size:clamp(19px,2.2vw,24px);margin:22px 0 10px}
-.hero-main .line3{font-size:clamp(14px,1.4vw,18px);margin:20px 0 0;color:var(--ink-soft)}
+.hero-main .line3{font-size:calc(clamp(20px,2.4vw,26px)*.78);margin:20px 0 0;color:var(--ink-soft)}
+@media (min-width:1100px){.hero-main .line3{white-space:nowrap}}
 .hero-main .rule{width:64px;height:3px;background:var(--gold);border-radius:2px;margin:26px auto 0}
 
 /* section headings */
