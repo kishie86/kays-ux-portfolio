@@ -475,6 +475,8 @@ body{overflow-x:clip}
 @media (min-width:1001px){.profile-grid{grid-template-columns:260px minmax(0,1fr) 330px;column-gap:40px}.pf-card{grid-column:3;grid-row:2 / span 2}}
 @media (max-width:1000px){.pf-card{grid-column:2;justify-self:start;width:min(100%,360px);margin-top:8px}}
 @media (max-width:860px){.pf-card{grid-column:1;width:min(100%,420px)}}
+.pf-card{position:relative}
+.pf-card:before{content:"";position:absolute;left:50%;top:-15px;width:116px;height:32px;margin-left:-58px;transform:rotate(-4deg);z-index:2;background:repeating-linear-gradient(90deg,rgba(255,255,255,.0) 0 7px,rgba(255,255,255,.18) 7px 8px),linear-gradient(180deg,rgba(236,222,186,.92),rgba(224,205,160,.88));box-shadow:0 2px 6px rgba(17,34,80,.22);clip-path:polygon(0 6%,3% 0,6% 7%,9% 0,100% 0,100% 100%,9% 100%,6% 93%,3% 100%,0 94%)}
 </style>
 </head>
 <body>
