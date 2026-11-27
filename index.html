@@ -45,7 +45,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--sapphire);outline-o
 .brand{font-family:var(--display);font-size:28px;font-weight:400;color:var(--royal);text-decoration:none;display:flex;align-items:center;gap:8px}
 .brand svg{width:20px;height:20px;fill:var(--sapphire);transform:rotate(45deg)}
 .nav{display:flex;gap:6px;flex-wrap:wrap}
-.nav a{font-weight:700;font-size:15px;color:var(--royal);text-decoration:none;padding:8px 12px;border-radius:999px;border:1px solid transparent}
+.nav a{font-weight:700;font-size:17px;color:var(--royal);text-decoration:none;padding:8px 12px;border-radius:999px;border:1px solid transparent}
 .nav a:hover{border-color:var(--gold);background:var(--swan)}
 
 /* journey wrapper + route */
@@ -413,7 +413,8 @@ footer{border-top:1px solid var(--shell);padding:36px 0 60px;color:var(--ink-sof
   .bar .track{grid-column:1/-1;grid-row:2}
 }
 @media (max-width:520px){
-  .nav a{padding:6px 9px;font-size:14px}
+  .nav a{padding:6px 7px;font-size:15px}
+  @media (max-width:380px){.nav a{font-size:14px;padding:6px 6px}}
   .brand{font-size:22px}
 }
 @media (prefers-reduced-motion:reduce){
