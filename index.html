@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23112250'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23E0C58F' font-family='Georgia,serif'%3EK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Besley:wght@400;500;600&family=Cormorant+Garamond:wght@500;600&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Besley:wght@400;500;600&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* Layout idea: one white scrolling journey. A dashed gold route winds behind the content
    and a small plane follows the viewer from stop to stop (hero, case studies, profile, about). */
@@ -265,10 +265,9 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--sapphire);outline-o
 .zblock.right .zfig{grid-column:2;grid-row:1}.zblock.right .ztxt{grid-column:1;grid-row:1}
 .zblock h3{font-size:34px;margin-bottom:12px}
 /* About slide show */
-.zig .zblock h3{font-family:'Cormorant Garamond','Besley',serif;font-weight:500;font-size:clamp(36px,3.6vw,46px);line-height:1.08;margin-bottom:16px}
-.zig .zblock h3 em{font-style:italic;color:var(--sapphire);padding:0 4px;background:linear-gradient(transparent 62%,#E0C58F 62%,#E0C58F 92%,transparent 92%);-webkit-box-decoration-break:clone;box-decoration-break:clone}
-
 #ab-h{text-align:center}
+#about-page .zig .zblock h3{display:inline-block;font-family:'Besley',serif;font-weight:400;font-size:clamp(28px,2.8vw,34px);line-height:1.15;text-align:center;margin:0 0 20px;padding:24px 40px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 120' preserveAspectRatio='none'%3E%3Cpath d='M30 60 C28 18 120 6 168 8 C250 10 306 26 302 62 C298 100 220 112 158 112 C80 114 22 100 28 56' fill='none' stroke='%23E0C58F' stroke-width='3' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+.zig .zblock h3 em{font-style:normal;color:inherit;background:none;padding:0}
 .zig.ss{position:relative;padding:0 76px;display:block;touch-action:pan-y}
 .zig.ss .zblock,.zig.ss .zblock.right{display:none;background:transparent}
 .zig.ss .zblock.on{display:block;column-count:2;column-gap:48px;column-fill:balance;animation:ssIn .45s ease}
